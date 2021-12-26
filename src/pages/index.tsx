@@ -14,11 +14,6 @@ const Home: NextPage = () => {
         <meta name="description" content="A zenport App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header
-        onIconClick={() => {
-          setPage(1);
-        }}
-      />
 
       <ZenportEatsProvider>
         <ZenportEats />
