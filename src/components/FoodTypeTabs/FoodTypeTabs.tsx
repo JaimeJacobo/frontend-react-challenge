@@ -3,9 +3,11 @@ import { TabPaneImageStyle, TabsStyle } from './styles';
 import { Tabs, Typography } from 'antd';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const { TabPane } = Tabs;
+
+import { useZenportEats } from '@modules/ZenportEats/hooks/useZenportEats';
 
 const images = {
   Appetizer: '/icons/appetizer.png',
@@ -15,13 +17,18 @@ const images = {
 };
 
 const FoodTypeTabs = () => {
-  const [selectedTab, setSelectedTab] = useState<string | null>(null);
+  const { setSelectedTabFood } = useZenportEats();
+  const [selectedTab, setSelectedTab] = useState<string>('');
+
+  useEffect(() => {
+    setSelectedTabFood(selectedTab);
+  }, [selectedTab, setSelectedTabFood]);
 
   return (
     <TabsStyle
       tabBarGutter={25}
       onTabClick={(activeKey: string) => {
-        setSelectedTab(selectedTab === activeKey ? null : activeKey);
+        setSelectedTab(selectedTab === activeKey ? '' : activeKey);
       }}
       $isDisabled={!selectedTab}
     >
