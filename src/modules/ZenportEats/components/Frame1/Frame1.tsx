@@ -34,6 +34,7 @@ const Frame1 = () => {
         onClick={() => {
           setOrder({
             numPeople: value,
+            lastPerson: value,
             orders: Array(value)
               .fill(0)
               .map((_, idx) => {

@@ -76,9 +76,17 @@ export const ZenportEatsProvider = ({ children }: Props) => {
   };
 
   const handlePersonDelete = (personIdx: number) => {
-    const newOrder = {
-      ...order,
+    const filteredOrders = {
       orders: order.orders.filter((_, orderIdx) => orderIdx !== personIdx),
+    };
+
+    const lastPersonsName = filteredOrders.orders[filteredOrders.orders.length - 1].name;
+    const lastPersonsNumber = Number(lastPersonsName.split(' ')[1]);
+
+    const newOrder = {
+      ...filteredOrders,
+      lastPerson: lastPersonsNumber,
+      numPeople: filteredOrders.orders.length,
     };
 
     setOrder(newOrder);
@@ -87,10 +95,12 @@ export const ZenportEatsProvider = ({ children }: Props) => {
   const handlePersonAdd = () => {
     const newOrder = {
       ...order,
+      numPeople: order.orders.length + 1,
+      lastPerson: order.lastPerson + 1,
       orders: [
         ...order.orders,
         {
-          name: `Person ${order.orders.length + 1}`,
+          name: `Person ${order.lastPerson + 1}`,
           items: [],
         },
       ],
