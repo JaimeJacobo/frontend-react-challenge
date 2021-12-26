@@ -27,6 +27,7 @@ interface ZenportEatsContextProps {
 /* eslint-disable */
 const defaultOrder = {
   numPeople: 0,
+  lastPerson: 0,
   orders: [],
 };
 
