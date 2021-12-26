@@ -16,6 +16,7 @@ const Frame2 = () => {
     handleFoodItemAdd,
     handlePersonDelete,
     handlePersonAdd,
+    selectedTabFood,
   } = useZenportEats();
 
   return (
@@ -24,14 +25,16 @@ const Frame2 = () => {
         <FoodTypeTabs />
         <FoodSelectionContainer>
           {Object.keys(foods).map((foodType) => {
-            return (
-              <FoodSelection
-                key={foodType}
-                foodType={foodType as FoodTypes}
-                foodItems={foods[foodType as FoodTypes]}
-                onFoodItemAdd={handleFoodItemAdd}
-              />
-            );
+            if (!selectedTabFood || selectedTabFood === foodType) {
+              return (
+                <FoodSelection
+                  key={foodType}
+                  foodType={foodType as FoodTypes}
+                  foodItems={foods[foodType as FoodTypes]}
+                  onFoodItemAdd={handleFoodItemAdd}
+                />
+              );
+            }
           })}
         </FoodSelectionContainer>
       </SectionStyle>
