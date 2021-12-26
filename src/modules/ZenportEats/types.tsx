@@ -11,5 +11,6 @@ export interface FoodOrder {
 
 export interface Order {
   numPeople: number;
+  lastPerson: number;
   orders: FoodOrder[];
 }
