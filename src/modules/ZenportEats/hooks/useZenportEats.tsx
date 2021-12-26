@@ -83,7 +83,7 @@ export const ZenportEatsProvider = ({ children }: Props) => {
     setOrder(newOrder);
   }, []);
 
-  const handlePersonAdd = useCallback(() => {
+  const handlePersonAdd = () => {
     const newOrder = {
       ...order,
       orders: [
@@ -96,7 +96,7 @@ export const ZenportEatsProvider = ({ children }: Props) => {
     };
 
     setOrder(newOrder);
-  }, []);
+  };
 
   return (
     <ZenportEatsContext.Provider
