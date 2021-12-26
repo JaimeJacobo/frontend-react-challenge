@@ -20,6 +20,8 @@ interface ZenportEatsContextProps {
   handleFoodItemAdd: (foodItem: FoodMenuItem) => void;
   handlePersonDelete: (personIdx: number) => void;
   handlePersonAdd: () => void;
+  selectedTabFood: string;
+  setSelectedTabFood: Dispatch<SetStateAction<string>>;
 }
 
 /* eslint-disable */
@@ -38,6 +40,8 @@ const ZenportEatsContext = createContext<ZenportEatsContextProps>({
   handleFoodItemAdd: () => {},
   handlePersonDelete: () => {},
   handlePersonAdd: () => {},
+  selectedTabFood: '',
+  setSelectedTabFood: () => {},
 });
 
 interface Props {
@@ -48,6 +52,7 @@ export const ZenportEatsProvider = ({ children }: Props) => {
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState<Order>(defaultOrder);
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [selectedTabFood, setSelectedTabFood] = useState('');
 
   const handleFoodItemAdd = (foodItem: FoodMenuItem) => {
     const newOrders = [...order.orders];
@@ -105,6 +110,8 @@ export const ZenportEatsProvider = ({ children }: Props) => {
         handleFoodItemAdd,
         handlePersonDelete,
         handlePersonAdd,
+        selectedTabFood,
+        setSelectedTabFood,
       }}
     >
       {children}
